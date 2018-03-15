@@ -6,5 +6,8 @@ This is my test portfoio. It uses AWS and ReactJS.
 
 Git and Github
 SSH
-
+HTML
+CSS
+Font Awesome
+Google Fonts
 
