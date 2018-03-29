@@ -20,6 +20,10 @@ describe("ExampleWorkModal component", () => {
     let openComponent = mount(<ExampleWorkModal example={myExample} 
         open={true}/>);
 
+    let mockCloseModalFn = jest.fn(); 
+    let closeComponent = mount(<ExampleWorkModal example={myExample}
+        open={true} closeModal={mockCloseModalFn}/>);
+
     let anchors = component.find("a");
 
     it("Should contain a single 'a' element", () => {
@@ -32,10 +36,16 @@ describe("ExampleWorkModal component", () => {
 
     it("Should have the modal class set correctly.", () => {
     {/*expect(rcomponent.find(".background--skyBlue").hasClass("modal--closed")).toBe(true);*/}
-        {/*console.log(rcomponent.find("background--skyBlue modal--closed").text());*/}
+        {/*console.log(rcomponent.find("background--skyBlue modal--closed").text());
+        console.log(component.find("div").children().text);*/}
         expect(component.find("div").length).toEqual(2);
-        console.log(component.find("div").children().text);
         {/*expect(rcomponent.find(".background--skyBlue").hasClass("modal--closed")).toBe(true);*/}
         expect(openComponent.find(".background--skyBlue").hasClass("modal--open")).toBe(true);
+    });
+
+    it("Should call the closeModal handler when clicked.", () => {
+        {/*expect(closeComponent.find(".color--cloud")).toBe(true);*/}
+        closeComponent.find('.color--cloud').first().simulate('click');
+        expect(mockCloseModalFn).toHaveBeenCalled();
     });
 });
